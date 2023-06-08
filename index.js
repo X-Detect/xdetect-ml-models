@@ -11,7 +11,7 @@ const upload = multer({ dest: 'uploads/' });
 // Endpoint untuk memuat model dan melakukan prediksi pada file gambar
 app.post('/predict', upload.single('image'), async (req, res) => {
   const imagePath = req.file.path;
-  const modelPath = 'model.json';
+  const modelPath = './90acc+/model.json';
 
   try {
     // Memuat model dan file bin
