@@ -11,7 +11,7 @@ const upload = multer({ dest: 'uploads/' });
 // Endpoint untuk memuat model dan melakukan prediksi pada file gambar
 app.post('/predict', upload.single('image'), async (req, res) => {
   const imagePath = req.file.path;
-  const modelPath = './90acc+/model.json';
+  const modelPath = './90acc+/model.h5';
 
   try {
     // Memuat model dan file bin
@@ -27,6 +27,18 @@ app.post('/predict', upload.single('image'), async (req, res) => {
 
     // Mendapatkan waktu saat ini dengan zona waktu GMT+7
     const currentTime = moment().tz("Asia/Jakarta").format("M/D/YYYY, h:mm:ss A");
+
+    // // Memuat model dan file bin
+    // const model = await tf.loadLayersModel(`file://${modelPath}`);
+
+    // // Baca file gambar menggunakan sharp
+    // const image = sharp(imagePath);
+
+    // // Lakukan prediksi pada gambar yang belum diproses
+    // const prediction = await model.predict(image);
+
+    // // Mendapatkan waktu saat ini dengan zona waktu GMT+7
+    // const currentTime = moment().tz("Asia/Jakarta").format("M/D/YYYY, h:mm:ss A");
 
     // Mendapatkan label dan nilai prediksi dalam persentase
     const labels = ["Mass", "Nodule", "Normal", "Pneumonia", "Tuberculosis"];
